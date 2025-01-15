@@ -3,11 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skyrockit</title>
+    <title>Daily Habits Tracker</title>
+    <style>
+      body {
+        background-color: #0a192f;
+        color: #ccd6f6;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        color: #64ffda;
+      }
+
+      nav {
+        background-color: #112240;
+        padding: 1rem;
+      }
+
+      nav a {
+        color: #64ffda;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
-    <%- include('./partials/_navbar.ejs') %>
-    <h1>Skyrockit</h1>
-    <p>A job application tracker.</p>
+    <nav>
+      <%- include('./partials/_navbar.ejs') %>
+    </nav>
+    <h1>Habits Tracker</h1>
   </body>
 </html>

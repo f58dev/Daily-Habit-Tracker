@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./public/new.css">
+    <title>Add a New Habit</title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1e3a8a, #0f172a);
+        color: #e5e7eb;
+      }
+
+      h1 {
+        color: #ffcc00;
+      }
+
+      a {
+        color: #00d2ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      button {
+        background: #1e40af;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #3b82f6;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add a New Habit</h1>
+    <form action="/users/<%= user._id %>/habits" method="POST">
+        <label for="habit">Habit Name:</label>
+        <input type="text" name="title" id="habit" placeholder="Enter your habit" required />
+        
+        <label for="status">Habit Status:</label>
+        <select id="status" name="status">
+            <option value="not_started">Not Started</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+            <option value="skipped">Skipped</option>
+        </select>
+        
+        <!-- Submit Button -->
+        <button type="submit">Add Habit</button>
+    </form>
+  </body>
+</html>

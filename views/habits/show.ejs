@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= habit.title %></title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1e3a8a, #0f172a);
+        color: #e5e7eb;
+      }
+
+      h1 {
+        color: #ffcc00;
+      }
+
+      a {
+        color: #00d2ff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      button {
+        background: #1e40af;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #3b82f6;
+      }
+    </style>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= habit.title %></h1>
+    <% if (habit.notes) { %>
+      <p>Notes: <%= habit.notes %></p>
+    <% } %>
+    <% if (habit.postingLink) { %>
+      <a href="<%= habit.postingLink %>">Visit this link</a>
+    <% } %>
+    <p>The status of this habit is: <%= habit.status %></p>
+
+    <a href="/users/<%= user._id %>/habits/<%= habit._id %>/edit">
+      Edit this habit
+    </a>
+
+    <form action="/users/<%= user._id %>/habits/<%= habit._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete this habit</button>
+    </form>
+</body>
+</html>

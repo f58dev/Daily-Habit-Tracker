@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
-const applicationSchema = new mongoose.Schema({
-  company: {
-    type: String,
-    required: true,
+const HabitSchema = new mongoose.Schema({
+  habits: {
+    type: String, 
   },
   title: {
     type: String,
@@ -17,11 +16,11 @@ const applicationSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['interested', 'applied', 'interviewing', 'rejected', 'accepted'],
+    enum: ['not_started', 'in_progress', 'completed', 'skipped'],
   },
 });
 
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -30,10 +29,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  applications: [applicationSchema], // embedding the applicationSchema here
+  habits: [HabitSchema], 
 });
 
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

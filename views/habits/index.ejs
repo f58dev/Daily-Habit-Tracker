@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Habits</title>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #000428, #004e92);
+        color: #fff;
+      }
+
+      h1 {
+        color: #ffcc00;
+        font-size: 2.5rem;
+      }
+
+      a {
+        color: #00d2ff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 15px 0;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      }
+
+      .container {
+        max-width: 700px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="container">
+      <h1>Your Habits</h1>
+      <a href="/users/<%=user._id%>/habits/new">Add a Habit</a>
+      <ul>
+          <% habits.forEach((habit)=>{ %>
+          <li>
+            <a href="/users/<%= user._id %>/habits/<%= habit._id %>">
+              <%= habit.title %> <%= habit.company %>
+            </a>
+          </li>
+          <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -10,24 +10,16 @@ const MongoStore = require("connect-mongo");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
-
-
-
-//controlles
-
+// Controllers
 const authController = require("./controllers/auth.js");
-const applicationsController = require('./controllers/applications.js');
+const habitsController = require('./controllers/habits.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 
-//Middleware
-
-// Middleware to parse URL-encoded data from forms
+// Middleware
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride("_method"));
-// Morgan for logging HTTP requests
 app.use(morgan('dev'));
 
 app.use(
@@ -43,27 +35,20 @@ app.use(
 
 app.use(passUserToView);
 
-//Public routs
-
+// Public routes
 app.get('/', (req, res) => {
-  // Check if the user is signed in
   if (req.session.user) {
-    // Redirect signed-in users to their applications index
-    res.redirect(`/users/${req.session.user._id}/applications`);
+    res.redirect(`/users/${req.session.user._id}/habits`);
   } else {
-    // Show the homepage for users who are not signed in
     res.render('index.ejs');
   }
 });
-  
-  
+
 app.use("/auth", authController);
 
-
-//Protected routs
+// Protected routes
 app.use(isSignedIn);
-
-app.use('/users/:userId/applications', applicationsController);
+app.use('/users/:userId/habits', habitsController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
